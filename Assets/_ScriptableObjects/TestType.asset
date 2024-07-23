@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: TestType
   m_EditorClassIdentifier: 
   catAndTypes:
-  - <CatModel>k__BackingField: {fileID: 6041308849616185153, guid: 3f5791a92d8ac3a4bac4b932ab2c5b2b,
+  - <CatModel>k__BackingField: {fileID: 2866665043194909757, guid: 4d29b64b657724c4fa4574018bcbc1c8,
       type: 3}
     <CatType>k__BackingField: 1
-  - <CatModel>k__BackingField: {fileID: 6041308849616185153, guid: 59f18acf05eeb4047b7d62096116719c,
+  - <CatModel>k__BackingField: {fileID: 5425660832111284795, guid: 3dfb20ec6a8960a42940de267b5356af,
       type: 3}
     <CatType>k__BackingField: 2
-  - <CatModel>k__BackingField: {fileID: 6041308849616185153, guid: 8312a26984980104fbe4bbc876712c72,
+  - <CatModel>k__BackingField: {fileID: 5285642459263103605, guid: 4e7f7391a7fa2724b94673cb158cf15b,
       type: 3}
     <CatType>k__BackingField: 3
-  - <CatModel>k__BackingField: {fileID: 6041308849616185153, guid: 36cbd994626cb034ead62db90b96dc1f,
+  - <CatModel>k__BackingField: {fileID: 738571108237671018, guid: cb6e39052d383f04da30ee039f6c3c54,
       type: 3}
     <CatType>k__BackingField: 4
