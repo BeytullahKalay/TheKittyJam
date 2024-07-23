@@ -241,10 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField:
   - {fileID: 1249829369}
   drawLineColor: {r: 1, g: 0, b: 0.92144823, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &201207424
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,12 +323,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField:
   - {fileID: 1273976309}
   - {fileID: 2058917343}
   - {fileID: 1327647155}
   drawLineColor: {r: 0.9327845, g: 0.41037738, b: 1, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &266966821
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,10 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 3
   <ParentNodes>k__BackingField:
   - {fileID: 1249829369}
   drawLineColor: {r: 0.10734272, g: 1, b: 0, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &437038557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,12 +1462,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 3
   <ParentNodes>k__BackingField:
   - {fileID: 239509737}
   - {fileID: 1327647155}
   - {fileID: 1273976309}
   drawLineColor: {r: 0, g: 0, b: 0, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &922423174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,9 +1596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootNode: {fileID: 1249829369}
-  selectedNode: {fileID: 0}
-  pathObject: {fileID: 6041308849616185153, guid: 36cbd994626cb034ead62db90b96dc1f,
-    type: 3}
 --- !u!1 &1041763302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,11 +1641,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField:
   - {fileID: 1895083685}
   - {fileID: 1273976309}
   drawLineColor: {r: 0, g: 0.13257027, b: 1, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1104163351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,9 +1753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField: []
   drawLineColor: {r: 0.968729, g: 1, b: 0, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1273976307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,12 +1801,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField:
   - {fileID: 1952444226}
   - {fileID: 435669970}
   - {fileID: 1327647155}
   drawLineColor: {r: 0, g: 1, b: 0.86242104, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1327647153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,11 +1852,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 4
   <ParentNodes>k__BackingField:
   - {fileID: 435669970}
   - {fileID: 1952444226}
   drawLineColor: {r: 1, g: 0.37877145, b: 0, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1432433889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,12 +2407,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 1
   <ParentNodes>k__BackingField:
   - {fileID: 862727124}
   - {fileID: 239509737}
   - {fileID: 2058917343}
   drawLineColor: {r: 1, g: 1, b: 1, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1881839008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,12 +2563,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 0
   <ParentNodes>k__BackingField:
   - {fileID: 166760954}
   - {fileID: 1952444226}
   - {fileID: 1273976309}
   drawLineColor: {r: 1, g: 0.99197686, b: 0, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1895809573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,10 +2824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 4
   <ParentNodes>k__BackingField:
   - {fileID: 1249829369}
   drawLineColor: {r: 0.23529412, g: 0, b: 1, a: 1}
-  IsNodeEmpty: 1
 --- !u!1 &1973904261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e0bfb8cabe745b79737c5e76296e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CatAndTypeDataSO>k__BackingField: {fileID: 0}
+  <CatAndTypeDataSO>k__BackingField: {fileID: 11400000, guid: 63b6af39f0fc71747b16bae32b7ab066,
+    type: 2}
 --- !u!1 &2058917341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,12 +2919,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CatType>k__BackingField: 4
   <ParentNodes>k__BackingField:
   - {fileID: 1327647155}
   - {fileID: 1041763304}
   - {fileID: 1895083685}
   drawLineColor: {r: 1, g: 0, b: 0.142766, a: 1}
-  IsNodeEmpty: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
