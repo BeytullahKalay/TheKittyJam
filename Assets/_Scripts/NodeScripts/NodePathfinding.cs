@@ -12,6 +12,12 @@ namespace _Scripts.Node
 
         private Node _selectedNode;
         private List<Node> _pathNodes = new List<Node>();
+        private StackManager _stackManager;
+
+        private void Awake()
+        {
+            _stackManager = StackManager.Instance;
+        }
 
 
         private void Update()
@@ -53,9 +59,7 @@ namespace _Scripts.Node
                 _selectedNode.SpawnedCatModel.transform.DOPath(spawnPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
                     .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
                     {
-                        Debug.Log("destroying object for now");
-                        Destroy(_selectedNode.SpawnedCatModel);
-
+                        _stackManager.AddObjectToStack(_selectedNode);
                     });
             }
             else

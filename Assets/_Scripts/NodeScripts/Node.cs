@@ -27,11 +27,6 @@ namespace _Scripts.Node
             IsEmpty = true;
         }
 
-        public void DestroyModel()
-        {
-            Destroy(_catModelToSpawn);
-        }
-
         private void SpawnCatModel()
         {
             if (CatType != CatType.NONE)
