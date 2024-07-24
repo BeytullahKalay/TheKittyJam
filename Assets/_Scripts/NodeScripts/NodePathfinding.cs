@@ -10,7 +10,7 @@ namespace _Scripts.Node
     {
         [SerializeField] private Node rootNode;
 
-        private Node _selectedNode;
+        //private Node _selectedNode;
         private List<Node> _pathNodes = new List<Node>();
         private StackManager _stackManager;
 
@@ -19,35 +19,16 @@ namespace _Scripts.Node
             _stackManager = StackManager.Instance;
         }
 
-
-        private void Update()
+        public void StartMovingOnPath(Node startNode)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _pathNodes.Clear();
 
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            _pathNodes.Clear();
 
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    var selection = hit.transform;
-                    _selectedNode = selection.parent.GetComponent<Node>();
-
-                    if (_selectedNode.TryGetComponent<Node>(out var node) && !node.IsEmpty)
-                        StartPath();
-
-                }
-            }
-
-        }
-
-        private void StartPath()
-        {
-            _pathNodes.Add(_selectedNode);
-            FindPathToRoot(_selectedNode, ref _pathNodes);
+            _pathNodes.Add(startNode);
+            FindPathToRoot(startNode, ref _pathNodes);
             if (_pathNodes.Count > 1)
             {
-                _selectedNode.SetNodeWalkable();
+                startNode.SetNodeWalkable();
 
                 var spawnPositionList = new List<Vector3>();
                 foreach (var node in _pathNodes)
@@ -56,15 +37,15 @@ namespace _Scripts.Node
                 }
 
 
-                _selectedNode.SpawnedCatModel.transform.DOPath(spawnPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+                startNode.SpawnedCatModel.transform.DOPath(spawnPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
                     .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
                     {
-                        _stackManager.AddObjectToStack(_selectedNode);
+                        _stackManager.AddObjectToStack(startNode);
                     });
             }
             else
             {
-                Debug.LogWarning("Path not found for this node: " + _selectedNode.gameObject.name);
+                Debug.LogWarning("Path not found for this node: " + startNode.gameObject.name);
             }
         }
 
