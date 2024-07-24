@@ -1,15 +1,17 @@
 using DG.Tweening;
 using Pandoras.Helper;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace _Scripts.Node
 {
 
-    public class NodePathfinding : MonoSingleton<NodePathfinding>
+    public class GraphManager : MonoSingleton<GraphManager>
     {
         [SerializeField] private Node rootNode;
         [SerializeField] private Transform nodesParent;
+        [SerializeField] private GameObject lineGameObject;
 
         private StackManager _stackManager;
         private List<Node> _pathNodes = new();
@@ -23,13 +25,14 @@ namespace _Scripts.Node
 
         private void Start()
         {
-            GetAllNodes();
-            AssignAllNeighbours();
+            InitializeGraph();
         }
 
-        public void AddNodeToList(Node node)
+        private void InitializeGraph()
         {
-            _allNodes.Add(node);
+            GetAllNodes();
+            AssignAllNeighbours();
+            CreateLines();
         }
 
         public void StartMovingOnPath(Node startNode)
@@ -131,6 +134,43 @@ namespace _Scripts.Node
                 {
                     _stackManager.AddObjectToStack(movingNode);
                 });
+        }
+
+        private void CreateLines()
+        {
+
+            List<ValueTuple<Node, Node>> linedFromTo = new();
+
+            var lineParent = new GameObject("LineParent");
+            lineParent.transform.SetParent(gameObject.transform);
+
+            foreach (var node in _allNodes)
+            {
+                foreach (var searchNode in _allNodes)
+                {
+                    if (node == searchNode) continue;
+                    if (!node.Neighbours.Contains(searchNode)) continue;
+                    if (linedFromTo.Contains((node, searchNode))) continue;
+                    if (linedFromTo.Contains((searchNode, node))) continue;
+
+
+                    linedFromTo.Add((node, searchNode));
+
+                    var lineObject = Instantiate(lineGameObject, lineParent.transform);
+                    var lr = lineObject.GetComponent<LineRenderer>();
+
+                    lr.positionCount = 2;
+
+                    var startPos = node.transform.position;
+                    var endPos = searchNode.transform.position;
+
+                    startPos.y = 0;
+                    endPos.y = 0;
+
+                    lr.SetPosition(0, startPos);
+                    lr.SetPosition(1, endPos);
+                }
+            }
         }
     }
 }

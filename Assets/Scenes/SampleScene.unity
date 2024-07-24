@@ -246,7 +246,7 @@ MonoBehaviour:
   - {fileID: 1249829369}
   - {fileID: 1952444226}
   - {fileID: 1895083685}
-  drawLineColor: {r: 1, g: 0, b: 0.92144823, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &201207424
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CatType>k__BackingField: 4
   <Neighbours>k__BackingField: []
-  drawLineColor: {r: 0.9327845, g: 0.41037738, b: 1, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &266966821
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +738,7 @@ MonoBehaviour:
   <CatType>k__BackingField: 3
   <Neighbours>k__BackingField:
   - {fileID: 1249829369}
-  drawLineColor: {r: 0.10734272, g: 1, b: 0, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &437038557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   <Neighbours>k__BackingField:
   - {fileID: 239509737}
   - {fileID: 1327647155}
-  drawLineColor: {r: 0, g: 0, b: 0, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &922423174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ GameObject:
   - component: {fileID: 950975675}
   - component: {fileID: 950975676}
   m_Layer: 0
-  m_Name: Pathfinding
+  m_Name: GraphManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1592,11 +1592,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 950975674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547ffb5e1fef11e458288263ba43a519, type: 3}
+  m_Script: {fileID: 11500000, guid: ee5db747d733bcd4d82ab1b9c1d6398d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rootNode: {fileID: 1249829369}
   nodesParent: {fileID: 23818663}
+  lineGameObject: {fileID: 6004267823228850639, guid: 8cb0a1ec47a41ca47a1ca2e39fee852c,
+    type: 3}
 --- !u!1 &1038305648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CatType>k__BackingField: 1
   <Neighbours>k__BackingField: []
-  drawLineColor: {r: 0, g: 0.13257027, b: 1, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1104163351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CatType>k__BackingField: 0
   <Neighbours>k__BackingField: []
-  drawLineColor: {r: 0.968729, g: 1, b: 0, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1273976307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1857,7 @@ MonoBehaviour:
   - {fileID: 1841749737}
   - {fileID: 239509737}
   - {fileID: 2058917343}
-  drawLineColor: {r: 0, g: 1, b: 0.86242104, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1296741410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +1984,7 @@ MonoBehaviour:
   - {fileID: 1273976309}
   - {fileID: 239509737}
   - {fileID: 435669970}
-  drawLineColor: {r: 1, g: 0.37877145, b: 0, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1402063252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,7 +2726,7 @@ MonoBehaviour:
   - {fileID: 1273976309}
   - {fileID: 1041763304}
   - {fileID: 2058917343}
-  drawLineColor: {r: 1, g: 0.99197686, b: 0, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1895809573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,7 +2988,7 @@ MonoBehaviour:
   - {fileID: 1249829369}
   - {fileID: 1273976309}
   - {fileID: 1327647155}
-  drawLineColor: {r: 0.23529412, g: 0, b: 1, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1973904261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CatType>k__BackingField: 4
   <Neighbours>k__BackingField: []
-  drawLineColor: {r: 1, g: 0, b: 0.142766, a: 1}
+  drawLineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MouseInputController : MonoBehaviour
 {
-    [SerializeField] private NodePathfinding _nodePathfinding;
+    [SerializeField] private GraphManager _nodePathfinding;
 
     private Node _selectedNode;
 
