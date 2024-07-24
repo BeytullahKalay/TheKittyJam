@@ -8,7 +8,7 @@ namespace _Scripts.Node
     public class Node : MonoBehaviour
     {
         [field: SerializeField] public CatType CatType { get; private set; }
-        [field: SerializeField] public List<Node> ParentNodes { get; private set; } = new();
+        [field: SerializeField] public List<Node> Neighbours { get; set; } = new();
         [SerializeField] private Color drawLineColor = Color.white;
 
         public bool IsEmpty { get; private set; } = true;
@@ -44,9 +44,9 @@ namespace _Scripts.Node
 
         private void DrawLines()
         {
-            if (ParentNodes.Count <= 0) return;
+            if (Neighbours.Count <= 0) return;
 
-            foreach (var parent in ParentNodes)
+            foreach (var parent in Neighbours)
             {
 
                 if (!parent.IsEmpty) continue;
