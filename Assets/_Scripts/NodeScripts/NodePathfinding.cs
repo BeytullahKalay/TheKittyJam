@@ -34,9 +34,14 @@ namespace _Scripts.Node
 
         public void StartMovingOnPath(Node startNode)
         {
-            _pathNodes.Clear();
+            _pathNodes?.Clear();
             _pathNodes = FindShortestPath(startNode);
-            StartPath();
+
+            if (_pathNodes != null)
+                StartPath(_pathNodes[0]);
+            else
+                Debug.Log("Path not found!");
+
         }
 
         public List<Node> FindShortestPath(Node startNode)
@@ -50,9 +55,8 @@ namespace _Scripts.Node
                 Node current = frontier.Dequeue();
 
                 if (current == rootNode)
-                {
                     break;
-                }
+
 
                 foreach (Node next in current.Neighbours)
                 {
@@ -62,6 +66,12 @@ namespace _Scripts.Node
                         cameFrom[next] = current;
                     }
                 }
+            }
+
+            // if there is no path return a null
+            if (cameFrom.Count <= 0 || !cameFrom.ContainsKey(rootNode))
+            {
+                return null;
             }
 
             List<Node> path = new List<Node>();
@@ -105,29 +115,22 @@ namespace _Scripts.Node
             }
         }
 
-        private void StartPath()
+        private void StartPath(Node movingNode)
         {
-            if (_pathNodes.Count > 1)
-            {
-                _pathNodes[0].SetNodeWalkable();
+            movingNode.SetNodeWalkable();
 
-                var pathPositionList = new List<Vector3>();
-                foreach (var node in _pathNodes)
+            var pathPositionList = new List<Vector3>();
+            foreach (var node in _pathNodes)
+            {
+                pathPositionList.Add(node.transform.position);
+            }
+
+
+            movingNode.SpawnedCatModel.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+                .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
                 {
-                    pathPositionList.Add(node.transform.position);
-                }
-
-
-                _pathNodes[0].SpawnedCatModel.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
-                    .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
-                    {
-                        _stackManager.AddObjectToStack(_pathNodes[0]);
-                    });
-            }
-            else
-            {
-                Debug.LogWarning("Path not found for this node: " + _pathNodes[0].gameObject.name);
-            }
+                    _stackManager.AddObjectToStack(movingNode);
+                });
         }
     }
 }

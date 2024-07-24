@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CatType>k__BackingField: 0
+  <CatType>k__BackingField: 4
   <Neighbours>k__BackingField:
   - {fileID: 1249829369}
   - {fileID: 1952444226}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CatType>k__BackingField: 0
+  <CatType>k__BackingField: 4
   <Neighbours>k__BackingField: []
   drawLineColor: {r: 0.9327845, g: 0.41037738, b: 1, a: 1}
 --- !u!1 &266966821
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   stackGroundObj: {fileID: 6012151254781105626, guid: 715be16dd3ee61144afed7879aaaf67a,
     type: 3}
   stackGroundSpawnTransform: {fileID: 1296741411}
-  stackAmount: 7
+  stackAmount: 13
   offset: 1.25
 --- !u!1 &1041763302
 GameObject:
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CatType>k__BackingField: 0
+  <CatType>k__BackingField: 1
   <Neighbours>k__BackingField: []
   drawLineColor: {r: 0, g: 0.13257027, b: 1, a: 1}
 --- !u!1 &1104163351
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef5f96e8d38364fbf085f6a8e5d1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CatType>k__BackingField: 0
+  <CatType>k__BackingField: 1
   <Neighbours>k__BackingField:
   - {fileID: 1273976309}
   - {fileID: 1041763304}
