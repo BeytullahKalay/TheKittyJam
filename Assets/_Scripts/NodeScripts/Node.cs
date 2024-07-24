@@ -7,34 +7,36 @@ namespace _Scripts.Node
 {
     public class Node : MonoBehaviour
     {
-        [field: SerializeField] public CatType CatType { get; private set; }
+        [field: SerializeField] public AnimalType AnimalType { get; private set; }
         [field: SerializeField] public List<Node> Neighbours { get; set; } = new();
         [SerializeField] private Color drawLineColor = Color.white;
 
         public bool IsEmpty { get; private set; } = true;
-        public GameObject SpawnedCatModel { get; private set; }
+        //public GameObject SpawnedCatModel { get; private set; }
+        public NodeObject NodeObject { get; private set; }
 
         private GameObject _catModelToSpawn;
 
         private void Start()
         {
-            SpawnCatModel();
+            SpawnAnimalModel();
         }
 
-        public void SetNodeWalkable()
+        public void SetNodeAvailable()
         {
-            CatType = CatType.NONE;
+            AnimalType = AnimalType.NONE;
             IsEmpty = true;
         }
 
-        private void SpawnCatModel()
+        private void SpawnAnimalModel()
         {
-            if (CatType != CatType.NONE)
-            {
-                _catModelToSpawn = GameManager.Instance.GetCatTypeModel(CatType);
-                SpawnedCatModel = Instantiate(_catModelToSpawn, transform.position, Quaternion.identity);
-                IsEmpty = false;
-            }
+            if (AnimalType == AnimalType.NONE) return;
+
+
+            _catModelToSpawn = GameManager.Instance.GetCatTypeModel(AnimalType);
+            NodeObject = Instantiate(_catModelToSpawn, transform.position, Quaternion.identity).GetComponent<NodeObject>();
+            NodeObject.InitializeNodeObject(this);
+            IsEmpty = false;
         }
 
         private void OnDrawGizmos()

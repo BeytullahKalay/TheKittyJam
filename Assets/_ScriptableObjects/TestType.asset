@@ -25,3 +25,6 @@ MonoBehaviour:
   - <CatModel>k__BackingField: {fileID: 738571108237671018, guid: cb6e39052d383f04da30ee039f6c3c54,
       type: 3}
     <CatType>k__BackingField: 4
+  - <CatModel>k__BackingField: {fileID: 7572736972153495465, guid: 572d7615132646b4798bb9599a739829,
+      type: 3}
+    <CatType>k__BackingField: 5

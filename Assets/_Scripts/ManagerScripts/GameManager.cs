@@ -4,7 +4,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [field: SerializeField] public CatAndTypeDataSO CatAndTypeDataSO { get; private set; }
 
-    public GameObject GetCatTypeModel(CatType catType)
+    public GameObject GetCatTypeModel(AnimalType catType)
     {
         foreach (var catTypeData in CatAndTypeDataSO.catAndTypes)
         {

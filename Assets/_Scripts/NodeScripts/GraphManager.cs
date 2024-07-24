@@ -1,3 +1,4 @@
+using _Scripts.CollectibleController;
 using DG.Tweening;
 using Pandoras.Helper;
 using System;
@@ -13,26 +14,20 @@ namespace _Scripts.Node
         [SerializeField] private Transform nodesParent;
         [SerializeField] private GameObject lineGameObject;
 
-        private StackManager _stackManager;
         private List<Node> _pathNodes = new();
         private List<Node> _allNodes = new();
+        private CollectManager _collectManager;
+
 
 
         private void Awake()
         {
-            _stackManager = StackManager.Instance;
+            _collectManager = CollectManager.Instance;
         }
 
         private void Start()
         {
             InitializeGraph();
-        }
-
-        private void InitializeGraph()
-        {
-            GetAllNodes();
-            AssignAllNeighbours();
-            CreateLines();
         }
 
         public void StartMovingOnPath(Node startNode)
@@ -92,7 +87,12 @@ namespace _Scripts.Node
             return path;
         }
 
-
+        private void InitializeGraph()
+        {
+            GetAllNodes();
+            AssignAllNeighbours();
+            CreatePathLines();
+        }
 
         private void GetAllNodes()
         {
@@ -120,7 +120,7 @@ namespace _Scripts.Node
 
         private void StartPath(Node movingNode)
         {
-            movingNode.SetNodeWalkable();
+            movingNode.SetNodeAvailable();
 
             var pathPositionList = new List<Vector3>();
             foreach (var node in _pathNodes)
@@ -129,14 +129,14 @@ namespace _Scripts.Node
             }
 
 
-            movingNode.SpawnedCatModel.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+            movingNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
                 .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
                 {
-                    _stackManager.AddObjectToStack(movingNode);
+                    _collectManager.CollectCat(movingNode.NodeObject);
                 });
         }
 
-        private void CreateLines()
+        private void CreatePathLines()
         {
 
             List<ValueTuple<Node, Node>> linedFromTo = new();

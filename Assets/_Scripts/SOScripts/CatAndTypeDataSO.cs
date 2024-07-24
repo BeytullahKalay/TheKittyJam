@@ -11,5 +11,5 @@ public class CatAndTypeDataSO : ScriptableObject
 public struct CatAndType
 {
     [field: SerializeField] public GameObject CatModel { get; private set; }
-    [field: SerializeField] public CatType CatType { get; private set; }
+    [field: SerializeField] public AnimalType CatType { get; private set; }
 }

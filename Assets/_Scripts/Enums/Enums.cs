@@ -1,9 +1,10 @@
 
-public enum CatType
+public enum AnimalType
 {
     NONE,
     Orange,
     Black,
     Gray,
-    White
+    White,
+    Fox
 }

@@ -19,10 +19,17 @@ public class MouseInputController : MonoBehaviour
                 _selectedNode = selection.parent.GetComponent<Node>();
 
                 if (_selectedNode.TryGetComponent<Node>(out var node) && !node.IsEmpty)
+                {
+                    if (node.AnimalType == AnimalType.Fox)
+                    {
+                        Debug.LogError("CLICKED TO FOX. FAIL");
+                        return;
+                    }
+
                     _nodePathfinding.StartMovingOnPath(_selectedNode);
+                }
 
             }
         }
-
     }
 }
