@@ -31,7 +31,7 @@ public class StackManager : MonoSingleton<StackManager>
 
     private int FindEmptyStackIndex()
     {
-        for (int i = 0; i < stackAmount; i++)
+        for (int i = 0; i < stackAmount - 1; i++)
         {
             if (stackDataHolderArray[i].StackGameObject == null) return i;
         }
@@ -43,7 +43,7 @@ public class StackManager : MonoSingleton<StackManager>
 
     private void InitializeStackArea()
     {
-        for (int i = -(stackAmount / 2); i < (stackAmount / 2); i++)
+        for (int i = 0; i < stackAmount; i++)
         {
             // find spawn position for stack ground object
             var spawnPostion = stackGroundSpawnTransform.position;
@@ -57,8 +57,12 @@ public class StackManager : MonoSingleton<StackManager>
 
 
             // add object to array
-            stackDataHolderArray[i + (stackAmount / 2)] = new StackDataHolder(null, obj.transform);
+            stackDataHolderArray[i] = new StackDataHolder(null, obj.transform);
         }
+
+        var pos = stackGroundSpawnTransform.position;
+        pos.x -= ((float)stackAmount / 2) + (offset / 2);
+        stackGroundSpawnTransform.position = pos;
     }
 
     private struct StackDataHolder
