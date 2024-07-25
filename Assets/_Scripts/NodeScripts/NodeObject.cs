@@ -8,6 +8,7 @@ namespace _Scripts.Node
         public void InitializeNodeObject(Node node)
         {
             AnimalType = node.AnimalType;
+            transform.SetParent(node.transform);
         }
     }
 }

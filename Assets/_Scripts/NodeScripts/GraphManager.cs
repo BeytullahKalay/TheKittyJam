@@ -9,20 +9,14 @@ namespace _Scripts.Node
 {
     public class GraphManager : MonoSingleton<GraphManager>
     {
+        [SerializeField] private CollectManager collectManager;
         [SerializeField] private Node rootNode;
         [SerializeField] private Transform nodesParent;
         [SerializeField] private GameObject lineGameObject;
 
         private List<Node> _pathNodes = new();
         private List<Node> _allNodes = new();
-        private CollectManager _collectManager;
 
-
-
-        private void Awake()
-        {
-            _collectManager = CollectManager.Instance;
-        }
 
         private void Start()
         {
@@ -131,7 +125,7 @@ namespace _Scripts.Node
             movingNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
                 .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
                 {
-                    _collectManager.CollectCat(movingNode.NodeObject);
+                    collectManager.CollectCat(movingNode.NodeObject);
                 });
         }
 

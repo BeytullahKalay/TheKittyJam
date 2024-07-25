@@ -26,6 +26,7 @@ namespace _Scripts.CollectibleController
         public void AddObjectToStack(NodeObject nodeObject)
         {
             var getEmptyStackIndex = FindEmptyStackIndex();
+            CheckStackIsFulled(getEmptyStackIndex);
             _stackDataHolderArray[getEmptyStackIndex].StackGameObject = nodeObject;
             nodeObject.gameObject.transform.position = _stackDataHolderArray[getEmptyStackIndex].StackTransform.position;
             nodeObject.gameObject.transform.rotation = Quaternion.identity;
@@ -38,14 +39,21 @@ namespace _Scripts.CollectibleController
 
         private int FindEmptyStackIndex()
         {
-            for (int i = 0; i < stackAmount - 1; i++)
+            for (int i = 0; i < stackAmount; i++)
             {
                 if (_stackDataHolderArray[i].StackGameObject == null) return i;
             }
-
-            Debug.LogError("STACK IS FULL. FAIL");
-
+            Debug.LogError("No empty space in stack");
             return -1;
+        }
+
+        private void CheckStackIsFulled(int foundIndex)
+        {
+            if (foundIndex >= _stackDataHolderArray.Length - 1)
+            {
+                Debug.Log("STACK IS FULL. FAIL");
+                EventManager.GameLoseExecute?.Invoke();
+            }
         }
 
         private void InitializeStackArea()

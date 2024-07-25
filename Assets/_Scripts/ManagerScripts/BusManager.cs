@@ -117,11 +117,9 @@ namespace _Scripts.CollectibleController
             else
             {
                 Debug.Log("There is no more bus on queue. YOU WON!");
+                EventManager.GameWinExecute?.Invoke();
             }
 
         }
-
-
-
     }
 }

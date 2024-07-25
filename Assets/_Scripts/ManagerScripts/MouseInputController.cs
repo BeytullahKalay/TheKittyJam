@@ -9,27 +9,27 @@ public class MouseInputController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var selection = hit.transform;
+            _selectedNode = selection.parent.GetComponent<Node>();
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (_selectedNode.TryGetComponent<Node>(out var node) && !node.IsEmpty)
             {
-                var selection = hit.transform;
-                _selectedNode = selection.parent.GetComponent<Node>();
-
-                if (_selectedNode.TryGetComponent<Node>(out var node) && !node.IsEmpty)
+                if (node.AnimalType == AnimalType.Fox)
                 {
-                    if (node.AnimalType == AnimalType.Fox)
-                    {
-                        Debug.LogError("CLICKED TO FOX. FAIL");
-                        return;
-                    }
-
-                    _nodePathfinding.StartMovingOnPath(_selectedNode);
+                    Debug.Log("CLICKED TO FOX. FAIL");
+                    EventManager.GameLoseExecute?.Invoke();
+                    return;
                 }
 
+                _nodePathfinding.StartMovingOnPath(_selectedNode);
             }
+
         }
     }
 }
