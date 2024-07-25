@@ -11,11 +11,11 @@ namespace _Scripts.CollectibleController
         [SerializeField] private int stackAmount = 6;
         [SerializeField] private float offset = 1f;
 
-        private StackDataHolder[] stackDataHolderArray;
+        private StackDataHolder[] _stackDataHolderArray;
 
         private void Awake()
         {
-            stackDataHolderArray = new StackDataHolder[stackAmount];
+            _stackDataHolderArray = new StackDataHolder[stackAmount];
         }
 
         private void Start()
@@ -25,18 +25,22 @@ namespace _Scripts.CollectibleController
 
         public void AddObjectToStack(NodeObject nodeObject)
         {
-            Debug.Log("Add object to stack");
             var getEmptyStackIndex = FindEmptyStackIndex();
-            stackDataHolderArray[getEmptyStackIndex].StackGameObject = nodeObject.gameObject;
-            nodeObject.gameObject.transform.position = stackDataHolderArray[getEmptyStackIndex].StackTransform.position;
+            _stackDataHolderArray[getEmptyStackIndex].StackGameObject = nodeObject;
+            nodeObject.gameObject.transform.position = _stackDataHolderArray[getEmptyStackIndex].StackTransform.position;
             nodeObject.gameObject.transform.rotation = Quaternion.identity;
+        }
+
+        public StackDataHolder[] GetStackDataHolderArray()
+        {
+            return _stackDataHolderArray;
         }
 
         private int FindEmptyStackIndex()
         {
             for (int i = 0; i < stackAmount - 1; i++)
             {
-                if (stackDataHolderArray[i].StackGameObject == null) return i;
+                if (_stackDataHolderArray[i].StackGameObject == null) return i;
             }
 
             Debug.LogError("STACK IS FULL. FAIL");
@@ -60,7 +64,7 @@ namespace _Scripts.CollectibleController
 
 
                 // add object to array
-                stackDataHolderArray[i] = new StackDataHolder(null, obj.transform);
+                _stackDataHolderArray[i] = new StackDataHolder(null, obj.transform);
             }
 
             var pos = stackGroundSpawnTransform.position;
@@ -68,15 +72,15 @@ namespace _Scripts.CollectibleController
             stackGroundSpawnTransform.position = pos;
         }
 
-        private struct StackDataHolder
+        public class StackDataHolder
         {
-            public StackDataHolder(GameObject stackGameObject, Transform stackTransform)
+            public StackDataHolder(NodeObject stackGameObject, Transform stackTransform)
             {
                 StackGameObject = stackGameObject;
                 StackTransform = stackTransform;
             }
 
-            public GameObject StackGameObject;
+            public NodeObject StackGameObject;
             public Transform StackTransform;
         }
     }

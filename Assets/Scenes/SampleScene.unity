@@ -2541,6 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5d3d0444a54094284e2028f1f34a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectManager: {fileID: 826805103}
   busGetCatPosition: {fileID: 1109025873}
   busMovePosition: {fileID: 264457707}
   busPrefab: {fileID: 3670063202898416937, guid: 43755f430eac14b449ca7522f9764305,

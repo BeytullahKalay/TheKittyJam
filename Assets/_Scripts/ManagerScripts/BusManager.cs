@@ -11,6 +11,7 @@ namespace _Scripts.CollectibleController
 
     public class BusManager : MonoBehaviour
     {
+        [SerializeField] private CollectManager _collectManager;
         [SerializeField] private Transform busGetCatPosition;
         [SerializeField] private Transform busMovePosition;
         [SerializeField] private GameObject busPrefab;
@@ -44,7 +45,6 @@ namespace _Scripts.CollectibleController
 
         public void CollectCat(NodeObject nodeObject)
         {
-            Debug.Log("Node collected to the bus");
             _activeBus.CollectAnimal(nodeObject.gameObject, OnBusFulled);
         }
 
@@ -90,7 +90,11 @@ namespace _Scripts.CollectibleController
         private void OnBusFulled()
         {
             var oldBus = _activeBus;
-            oldBus.transform.DOMoveX(busMovePosition.position.x, 1f);
+            oldBus.transform.DOMoveX(busMovePosition.position.x, 1f).OnStart(() =>
+            {
+                if (_collectManager == null) Debug.LogError("collect manager is null.");
+                _collectManager.OnBusLeavingTheCollectPos?.Invoke();
+            });
 
             // remove first object from bus and bus collectible type from lists
             _spawnedBusses.RemoveAt(0);
@@ -106,12 +110,13 @@ namespace _Scripts.CollectibleController
                 // move new bus to stop position
                 _activeBus.transform.DOMoveX(busGetCatPosition.position.x, 1f).OnComplete(() =>
                 {
-                    Debug.Log("Check is there any gettable cat object in stack.");
+                    if (_collectManager == null) Debug.LogError("collect manager is null.");
+                    _collectManager.OnBusStopOnCollectPos?.Invoke();
                 });
             }
             else
             {
-                Debug.Log("There no more bus on queue. YOU WON!");
+                Debug.Log("There is no more bus on queue. YOU WON!");
             }
 
         }

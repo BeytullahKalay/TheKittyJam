@@ -25,7 +25,6 @@ public class Bus : MonoBehaviour
 
         if (_currentCollectIndex >= MAX_COLLECT_AMOUNT)
         {
-            Debug.Log("Bus full actions!");
             onBussFulled?.Invoke();
         }
     }

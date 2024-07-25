@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace _Scripts.Node
 {
-
     public class GraphManager : MonoSingleton<GraphManager>
     {
         [SerializeField] private Node rootNode;
