@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db246bdd2f47474c9a732c17504e598, type: 3}
+  m_Name: BusTypeAndMaterial
+  m_EditorClassIdentifier: 
+  busTypeAndMaterialData:
+  - AnimalType: 1
+    Material: {fileID: 2100000, guid: 5579bbfe119999c4498785a10d732092, type: 2}
+  - AnimalType: 2
+    Material: {fileID: 2100000, guid: 027a4c32c7b80854193a0bc5a54b1da6, type: 2}
+  - AnimalType: 3
+    Material: {fileID: 2100000, guid: ea048d23a9958294e872a46be49686a7, type: 2}
+  - AnimalType: 4
+    Material: {fileID: 2100000, guid: 4f3a107440f7ee643932127296da477e, type: 2}

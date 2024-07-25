@@ -7,12 +7,21 @@ public class Bus : MonoBehaviour
     [field: SerializeField] public Transform[] Slots { get; private set; } = new Transform[MAX_COLLECT_AMOUNT];
 
     private int _currentCollectIndex = 0;
+    private MeshRenderer _meshRenderer;
 
     private const int MAX_COLLECT_AMOUNT = 3;
 
-    public void SetCollectibleAnimalType(AnimalType animalType)
+
+    private void Awake()
+    {
+        _meshRenderer = GetComponent<MeshRenderer>();
+    }
+
+
+    public void InitilizeBuss(AnimalType animalType, Material busMaterial)
     {
         CollectibleAnimalType = animalType;
+        _meshRenderer.material = busMaterial;
     }
 
     public void CollectAnimal(GameObject collectObject, Action onBussFulled)

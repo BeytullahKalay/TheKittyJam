@@ -16,16 +16,17 @@ namespace _Scripts.CollectibleController
         [SerializeField] private Transform busMovePosition;
         [SerializeField] private GameObject busPrefab;
         [SerializeField] private float busSpawnOffset;
+        [SerializeField] private BusTypeAndMaterialDataSO busTypeAndMaterialDataSO;
         [SerializeField] private List<AnimalType> busCollectibleType = new();
 
-        private List<Bus> _spawnedBusses = new();
 
-        private Bus _activeBus;
         public AnimalType ActiveBusAnimaltype { get; private set; }
 
-        private GameObject _busParentHolder;
 
+        private Bus _activeBus;
+        private GameObject _busParentHolder;
         private Action OnBusFulledAction;
+        private List<Bus> _spawnedBusses = new();
 
         private void OnEnable()
         {
@@ -79,7 +80,9 @@ namespace _Scripts.CollectibleController
 
                 // set bus script animal type
                 var busScript = busObj.GetComponent<Bus>();
-                busScript.SetCollectibleAnimalType(busCollectibleType[i]);
+
+
+                busScript.InitilizeBuss(busCollectibleType[i], busTypeAndMaterialDataSO.GetBusMaterial(busCollectibleType[i]));
 
                 // add to list
                 _spawnedBusses.Add(busScript);
@@ -121,5 +124,6 @@ namespace _Scripts.CollectibleController
             }
 
         }
+
     }
 }
