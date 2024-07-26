@@ -116,14 +116,24 @@ namespace _Scripts.Node
 
         private void StartPath(Node movingNode)
         {
+            // set node state to available
             _movingNode = movingNode;
             movingNode.SetNodeAvailable();
 
+            // check neighbour dirt state
+            foreach (var neighbourNode in _movingNode.Neighbours)
+            {
+                if (neighbourNode.IsDirty)
+                    neighbourNode.IsDirty = false;
+            }
+
+
+            // add path nodes for tween
             var pathPositionList = new List<Vector3>();
             foreach (var node in _pathNodes)
                 pathPositionList.Add(node.transform.position);
 
-
+            // play path tween
             _pathTween = movingNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
                 .SetSpeedBased(true).OnStart(() => CheckWillTheyFight()).SetLookAt(0.01f).OnComplete(() =>
                 {
@@ -185,13 +195,13 @@ namespace _Scripts.Node
             var animal1 = remainigAnimalsList[1];
 
             // animal types are different, there will be no fight
-            if (animal0.AnimalType != animal1.AnimalType) return;
+            if (animal0.AnimalType == animal1.AnimalType) return;
 
 
             // they are not neigbours, there will be no fight
             if (!AreTheyNeighbour(animal0, animal1)) return;
 
-
+            // override path tween on start action
             _pathTween.OnStart(() => collectManager.LockCollectAction()).OnComplete(() =>
             {
                 collectManager.CollectCat(_movingNode.NodeObject);

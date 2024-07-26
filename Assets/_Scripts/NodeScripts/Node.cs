@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,12 +10,47 @@ namespace _Scripts.Node
     {
         [field: SerializeField] public AnimalType AnimalType { get; private set; }
         [field: SerializeField] public List<Node> Neighbours { get; set; } = new();
-        [SerializeField] private Color drawLineColor = Color.white;
+
 
         public bool IsEmpty { get; private set; } = true;
         public NodeObject NodeObject { get; private set; }
 
+
+        public Action<bool> IsDirtyStateChangedTo;
+        [SerializeField] private bool isDirty;
+        public bool IsDirty
+        {
+            get { return isDirty; }
+            set
+            {
+                if (isDirty == value) return;
+                else
+                {
+                    isDirty = value;
+                    IsDirtyStateChangedTo?.Invoke(value);
+                }
+            }
+        }
+
+
+
         private GameObject _catModelToSpawn;
+
+        private void OnEnable()
+        {
+            IsDirtyStateChangedTo += OnDirtyStateChange;
+        }
+
+        private void OnDisable()
+        {
+            IsDirtyStateChangedTo -= OnDirtyStateChange;
+        }
+
+        private void OnDirtyStateChange(bool newDirtyState)
+        {
+            if (IsEmpty) return;
+            NodeObject.ChangeMaterial(newDirtyState);
+        }
 
         private void Start()
         {
@@ -32,7 +68,8 @@ namespace _Scripts.Node
             if (AnimalType == AnimalType.NONE) return;
 
 
-            _catModelToSpawn = GameManager.Instance.GetCatTypeModel(AnimalType);
+            _catModelToSpawn = GameManager.Instance.GetBaseGameObject();
+
             NodeObject = Instantiate(_catModelToSpawn, transform.position, Quaternion.identity).GetComponent<NodeObject>();
             NodeObject.InitializeNodeObject(this);
             IsEmpty = false;
@@ -55,7 +92,7 @@ namespace _Scripts.Node
                 var p1 = transform.position;
                 var p2 = parent.transform.position;
                 var thickness = 6;
-                Handles.DrawBezier(p1, p2, p1, p2, drawLineColor, null, thickness);
+                Handles.DrawBezier(p1, p2, p1, p2, Color.white, null, thickness);
             }
         }
     }

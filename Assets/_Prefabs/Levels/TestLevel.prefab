@@ -602,12 +602,17 @@ PrefabInstance:
     - target: {fileID: 2486329105409538518, guid: aa503ddfb05b1004dad1cb4e6f4c5509,
         type: 3}
       propertyPath: <AnimalType>k__BackingField
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900303601477652947, guid: aa503ddfb05b1004dad1cb4e6f4c5509,
+        type: 3}
+      propertyPath: isDirty
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2900303601477652947, guid: aa503ddfb05b1004dad1cb4e6f4c5509,
         type: 3}
       propertyPath: <AnimalType>k__BackingField
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3710828840280944237, guid: aa503ddfb05b1004dad1cb4e6f4c5509,
         type: 3}
@@ -687,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 8629625173504039208, guid: aa503ddfb05b1004dad1cb4e6f4c5509,
         type: 3}
       propertyPath: <AnimalType>k__BackingField
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

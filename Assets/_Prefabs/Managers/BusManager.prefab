@@ -113,7 +113,7 @@ MonoBehaviour:
   busMovePosition: {fileID: 2528430272567388072}
   busPrefab: {fileID: 3670063202898416937, guid: 43755f430eac14b449ca7522f9764305,
     type: 3}
-  busSpawnOffset: 8
+  busSpawnOffset: 4
   busTypeAndMaterialDataSO: {fileID: 11400000, guid: 6e6ab3713035f1740a0a8c981be10e6c,
     type: 2}
   busCollectibleType: 01000000020000000300000004000000

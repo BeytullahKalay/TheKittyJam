@@ -4,12 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Cat And Type Data")]
 public class CatAndTypeDataSO : ScriptableObject
 {
-    [field: SerializeField] public List<CatAndType> catAndTypes = new();
+    [field: SerializeField] public GameObject BaseCatModel { get; private set; }
+    [field: SerializeField] public Material DirtMaterial { get; private set; }
+    [field: SerializeField] public List<CatMaterialAndType> CatAndTypes = new();
 }
 
 [System.Serializable]
-public struct CatAndType
+public struct CatMaterialAndType
 {
-    [field: SerializeField] public GameObject CatModel { get; private set; }
+    [field: SerializeField] public Material CatMaterial { get; private set; }
     [field: SerializeField] public AnimalType CatType { get; private set; }
 }
