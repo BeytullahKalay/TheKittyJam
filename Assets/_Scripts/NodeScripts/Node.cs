@@ -12,7 +12,6 @@ namespace _Scripts.Node
         [SerializeField] private Color drawLineColor = Color.white;
 
         public bool IsEmpty { get; private set; } = true;
-        //public GameObject SpawnedCatModel { get; private set; }
         public NodeObject NodeObject { get; private set; }
 
         private GameObject _catModelToSpawn;

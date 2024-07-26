@@ -37,6 +37,8 @@ namespace _Scripts.CollectibleController
             _collecObjectQue.Enqueue(nodeObject);
         }
 
+
+
         private void Update()
         {
             if (!_lock && _collecObjectQue.Count > 0)
@@ -50,7 +52,7 @@ namespace _Scripts.CollectibleController
             }
         }
 
-        private void LockCollectAction()
+        public void LockCollectAction()
         {
             _lock = true;
         }

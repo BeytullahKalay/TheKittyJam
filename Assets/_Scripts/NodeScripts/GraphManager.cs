@@ -17,6 +17,9 @@ namespace _Scripts.Node
         private List<Node> _pathNodes = new();
         private List<Node> _allNodes = new();
 
+        private Tween _pathTween;
+        private Node _movingNode;
+
 
         private void Start()
         {
@@ -113,17 +116,16 @@ namespace _Scripts.Node
 
         private void StartPath(Node movingNode)
         {
+            _movingNode = movingNode;
             movingNode.SetNodeAvailable();
 
             var pathPositionList = new List<Vector3>();
             foreach (var node in _pathNodes)
-            {
                 pathPositionList.Add(node.transform.position);
-            }
 
 
-            movingNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
-                .SetSpeedBased(true).SetLookAt(0.01f).OnComplete(() =>
+            _pathTween = movingNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+                .SetSpeedBased(true).OnStart(() => CheckWillTheyFight()).SetLookAt(0.01f).OnComplete(() =>
                 {
                     collectManager.CollectCat(movingNode.NodeObject);
                 });
@@ -164,6 +166,48 @@ namespace _Scripts.Node
                     lr.SetPosition(1, endPos);
                 }
             }
+        }
+
+        private void CheckWillTheyFight()
+        {
+            var remainigAnimalsList = new List<Node>();
+
+            foreach (var node in _allNodes)
+            {
+                if (!node.IsEmpty)
+                    remainigAnimalsList.Add(node);
+            }
+
+            // remaining animal amount less or equal to 1 or more than 2, there will be no fight
+            if (remainigAnimalsList.Count > 2 || remainigAnimalsList.Count <= 1) return;
+
+            var animal0 = remainigAnimalsList[0];
+            var animal1 = remainigAnimalsList[1];
+
+            // animal types are different, there will be no fight
+            if (animal0.AnimalType != animal1.AnimalType) return;
+
+
+            // they are not neigbours, there will be no fight
+            if (!AreTheyNeighbour(animal0, animal1)) return;
+
+
+            _pathTween.OnStart(() => collectManager.LockCollectAction()).OnComplete(() =>
+            {
+                collectManager.CollectCat(_movingNode.NodeObject);
+
+                // there will be fight. FAIL
+                Debug.Log("They are fighting. FAIL");
+                EventManager.GameLoseExecute?.Invoke();
+            });
+
+
+
+        }
+
+        private bool AreTheyNeighbour(Node node1, Node node2)
+        {
+            return node1.Neighbours.Contains(node2) || node2.Neighbours.Contains(node1);
         }
     }
 }
