@@ -67,9 +67,7 @@ namespace _Scripts.Node
                 foreach (var neigbour in Neighbours)
                 {
                     if (neigbour.IsEmpty)
-                    {
                         Debug.LogWarning(this.gameObject.name + " object is dirty but " + neigbour + " is empty!");
-                    }
                 }
             }
         }
