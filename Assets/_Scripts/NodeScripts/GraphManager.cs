@@ -26,19 +26,173 @@ namespace _Scripts.Node
             InitializeGraph();
         }
 
-        public void StartMovingOnPath(Node startNode)
+        public void HandleNodeClick(Node node)
+        {
+            if (node.AnimalType == AnimalType.Fox)
+            {
+                Debug.Log("CLICKED TO FOX. FAIL");
+                EventManager.GameLoseExecute?.Invoke();
+                return;
+            }
+
+            if (node.IsDirty)
+            {
+                Debug.Log("Dirty cat can not move");
+                return;
+            }
+
+            StartMovingOnPath(node);
+        }
+
+        public bool HandleKittyJump(Node jumperNode)
+        {
+            if (jumperNode.AnimalType == AnimalType.Fox)
+            {
+                Debug.Log("FOX isn't a kitty!");
+                return false;
+            }
+
+            if (jumperNode.IsDirty)
+            {
+                Debug.Log("Dirt kitty can not jump!");
+                return false;
+            }
+
+            var jumperKittyPathToRootNode = FindShortestPathToRootNode(jumperNode);
+            if (jumperKittyPathToRootNode != null)
+            {
+                Debug.Log("Jumpler kitty has path to root node!");
+                return false;
+            }
+
+
+            var neighboursPath = new List<List<Node>>();
+            var movableNodes = new List<Node>();
+            var visitedNodes = new List<Node>();
+
+            visitedNodes.Add(jumperNode);
+            movableNodes.Add(jumperNode);
+
+            while (movableNodes.Count > 0)
+            {
+                var searchNode = movableNodes[0];
+                foreach (var neighbour in searchNode.Neighbours)
+                {
+                    if (visitedNodes.Contains(neighbour)) continue;
+
+                    visitedNodes.Add(neighbour);
+
+                    if (neighbour.IsEmpty)
+                        movableNodes.Add(neighbour);
+                    else
+                        neighboursPath.Add(FindShortestPathToRootNode(neighbour));
+                }
+
+                movableNodes.RemoveAt(0);
+            }
+
+
+
+            // find shortest path
+            var minNodeAmount = int.MaxValue;
+            var selectedPath = new List<Node>();
+
+            foreach (var path in neighboursPath)
+            {
+                if (path?.Count < minNodeAmount)
+                {
+                    selectedPath = path;
+                    minNodeAmount = path.Count;
+                }
+            }
+
+            // check is there a path
+            if (selectedPath.Count <= 0)
+            {
+                Debug.Log("This no place to jump and move to nood");
+                return false;
+            }
+
+
+            Tween pathToJumpNodeTween = null;
+            var pathToJumpAboveNode = FindPathToNode(jumperNode, selectedPath[0], false);
+            if (pathToJumpAboveNode?.Count > 2)
+            {
+                // remove jumping node from path list
+                pathToJumpAboveNode.RemoveAt(pathToJumpAboveNode.Count - 1);
+
+
+                // add path nodes for tween
+                var pathToJumpNodePositions = new List<Vector3>();
+                foreach (var node in pathToJumpAboveNode)
+                    pathToJumpNodePositions.Add(node.transform.position);
+
+
+                pathToJumpNodeTween = jumperNode.NodeObject.transform.
+                    DOPath(pathToJumpNodePositions.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+                    .SetSpeedBased(true).SetLookAt(0.01f);
+            }
+
+
+
+            // add path nodes for tween
+            var pathPositionList = new List<Vector3>();
+            foreach (var node in selectedPath)
+                pathPositionList.Add(node.transform.position);
+
+            // removing jumped node
+            pathPositionList.RemoveAt(0);
+
+            // set node state to available
+            SetNodeStateToAvailable(jumperNode);
+
+
+            var pathToRootTween = // define kitty tweens
+                    jumperNode.NodeObject.transform.DOJump(selectedPath[1].transform.position, 2, 1, .5f)
+                        .OnComplete(() =>
+                        {
+                            // check if landed node is root node
+                            if (selectedPath[1] == rootNode)
+                            {
+                                collectManager.CollectCat(jumperNode.NodeObject);
+                            }
+                            else
+                            {
+                                // play path tween
+                                _pathTween = jumperNode.NodeObject.transform.DOPath(pathPositionList.ToArray(), 10, PathType.Linear, PathMode.Full3D)
+                                    .SetSpeedBased(true).OnStart(() => CheckWillTheyFight()).SetLookAt(0.01f).OnComplete(() =>
+                                    {
+                                        collectManager.CollectCat(jumperNode.NodeObject);
+                                    });
+                            }
+                        });
+            pathToRootTween.Pause();
+
+            if (pathToJumpNodeTween != null)
+                pathToJumpNodeTween.OnComplete(() => pathToRootTween.Play());
+            else
+                pathToRootTween.Play();
+
+            return true;
+        }
+
+        public List<Node> FindShortestPathToRootNode(Node startNode)
+        {
+            return FindPathToNode(startNode, rootNode);
+        }
+
+        private void StartMovingOnPath(Node startNode)
         {
             _pathNodes?.Clear();
-            _pathNodes = FindShortestPath(startNode);
+            _pathNodes = FindShortestPathToRootNode(startNode);
 
             if (_pathNodes != null)
                 StartPath(_pathNodes[0]);
             else
                 Debug.Log("Path not found!");
-
         }
 
-        public List<Node> FindShortestPath(Node startNode)
+        private List<Node> FindPathToNode(Node startNode, Node endNode, bool LookingForAEmptyNode = true)
         {
             Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
             Queue<Node> frontier = new Queue<Node>();
@@ -48,28 +202,43 @@ namespace _Scripts.Node
             {
                 Node current = frontier.Dequeue();
 
-                if (current == rootNode)
+                if (current == endNode)
                     break;
 
 
                 foreach (Node next in current.Neighbours)
                 {
-                    if (!cameFrom.ContainsKey(next) && next.IsEmpty)
+                    if (!cameFrom.ContainsKey(next))
                     {
-                        frontier.Enqueue(next);
-                        cameFrom[next] = current;
+                        if (LookingForAEmptyNode)
+                        {
+                            if (next.IsEmpty)
+                            {
+                                frontier.Enqueue(next);
+                                cameFrom[next] = current;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            frontier.Enqueue(next);
+                            cameFrom[next] = current;
+                        }
                     }
                 }
             }
 
             // if there is no path return a null
-            if (cameFrom.Count <= 0 || !cameFrom.ContainsKey(rootNode))
+            if (cameFrom.Count <= 0 || !cameFrom.ContainsKey(endNode))
             {
                 return null;
             }
 
             List<Node> path = new List<Node>();
-            Node currentNode = rootNode;
+            Node currentNode = endNode;
 
             while (currentNode != startNode)
             {
@@ -117,15 +286,7 @@ namespace _Scripts.Node
         private void StartPath(Node movingNode)
         {
             // set node state to available
-            _movingNode = movingNode;
-            movingNode.SetNodeAvailable();
-
-            // check neighbour dirt state
-            foreach (var neighbourNode in _movingNode.Neighbours)
-            {
-                if (neighbourNode.IsDirty)
-                    neighbourNode.IsDirty = false;
-            }
+            SetNodeStateToAvailable(movingNode);
 
 
             // add path nodes for tween
@@ -139,6 +300,19 @@ namespace _Scripts.Node
                 {
                     collectManager.CollectCat(movingNode.NodeObject);
                 });
+        }
+
+        private void SetNodeStateToAvailable(Node movingNode)
+        {
+            _movingNode = movingNode;
+            movingNode.SetNodeAvailable();
+
+            // check neighbour dirt state
+            foreach (var neighbourNode in _movingNode.Neighbours)
+            {
+                if (neighbourNode.IsDirty)
+                    neighbourNode.IsDirty = false;
+            }
         }
 
         private void CreatePathLines()

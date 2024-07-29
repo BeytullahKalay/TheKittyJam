@@ -8,4 +8,10 @@ public class CanvasButtonsController : MonoBehaviour
     {
         StackManager.Instance.AddExtraStack();
     }
+
+    // using by unity event
+    public void KittyJumpButton()
+    {
+        MouseInputController.Instance.ToggleKittyJumpState();
+    }
 }

@@ -8,3 +8,9 @@ public enum AnimalType
     White,
     Fox
 }
+
+public enum InputState
+{
+    Normal,
+    KittyJump
+}
