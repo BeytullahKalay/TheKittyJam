@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace _Scripts.CollectibleController
 {
-    public class CollectManager : MonoSingleton<CollectManager>
+    public class CollectManager : MonoBehaviour
     {
         [SerializeField] private BusManager _busManager;
-        [SerializeField] private StackManager _stackManager;
+        [SerializeField] private StackManager stackManager;
 
         public Action OnBusLeavingTheCollectPos;
         public Action OnBusStopOnCollectPos;
@@ -48,7 +48,7 @@ namespace _Scripts.CollectibleController
                 if (nodeObject.AnimalType == _busManager.ActiveBusAnimaltype)
                     _busManager.CollectCat(nodeObject);
                 else
-                    _stackManager.AddObjectToStack(nodeObject);
+                    stackManager.AddObjectToStack(nodeObject);
             }
         }
 
@@ -64,9 +64,9 @@ namespace _Scripts.CollectibleController
 
         private void CheckStackObjects()
         {
-            var arr = _stackManager.GetStackDataHolderArray();
+            var arr = stackManager.GetStackDataHolderArray();
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Count; i++)
             {
                 if (arr[i].StackGameObject == null) continue;
 

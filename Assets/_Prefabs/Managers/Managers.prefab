@@ -126,6 +126,11 @@ PrefabInstance:
       objectReference: {fileID: 4381493016432342384}
     - target: {fileID: 679581016088303888, guid: ebc6d40bbfbc6a9479a0efebb76eb188,
         type: 3}
+      propertyPath: stackManager
+      value: 
+      objectReference: {fileID: 5591630370041404420}
+    - target: {fileID: 679581016088303888, guid: ebc6d40bbfbc6a9479a0efebb76eb188,
+        type: 3}
       propertyPath: _stackManager
       value: 
       objectReference: {fileID: 5591630370041404420}

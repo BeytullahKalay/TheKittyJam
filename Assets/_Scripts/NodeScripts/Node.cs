@@ -54,7 +54,13 @@ namespace _Scripts.Node
 
         private void Start()
         {
+            CheckDirtyState();
             SpawnAnimalModel();
+        }
+
+        private void CheckDirtyState()
+        {
+            if (AnimalType == AnimalType.NONE) isDirty = false;
         }
 
         public void SetNodeAvailable()
