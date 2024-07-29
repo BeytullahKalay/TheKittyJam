@@ -61,6 +61,17 @@ namespace _Scripts.Node
         private void CheckDirtyState()
         {
             if (AnimalType == AnimalType.NONE) isDirty = false;
+
+            if (IsDirty)
+            {
+                foreach (var neigbour in Neighbours)
+                {
+                    if (neigbour.IsEmpty)
+                    {
+                        Debug.LogWarning(this.gameObject.name + " object is dirty but " + neigbour + " is empty!");
+                    }
+                }
+            }
         }
 
         public void SetNodeAvailable()
