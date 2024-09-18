@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAEAgAAAAAAAAAAgAAAAAAAAICAASBABBCAA=</HashCode>
+      <FileName>Assets\_Scripts\ManagerScripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_Scripts.Node.GraphManager">
+    <Position X="0.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>UEAYAYRAADAEAAUBCCAAAICAAIAgAQAAQBBCAEAAADA=</HashCode>
+      <FileName>Assets\_Scripts\NodeScripts\GraphManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_Scripts.Node.Node" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABEgAAAACBAAKYAAIAAgAAAABAAAAAIAWAAAAAACQA=</HashCode>
+      <FileName>Assets\_Scripts\NodeScripts\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bus" Collapsed="true">
+    <Position X="9.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAEAEABAAAAABAAAAAAAAIIAAEA=</HashCode>
+      <FileName>Assets\_Scripts\Bus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_Scripts.CollectibleController.CollectManager">
+    <Position X="11.75" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAQAgAAAAAAAAAAhAAAAAAAAAAAAAAAoIAABAAABCAU=</HashCode>
+      <FileName>Assets\_Scripts\ManagerScripts\CollectManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_Scripts.CollectibleController.BusManager">
+    <Position X="3.75" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgACAhgAACAAEABAgAAAAACIAACBAAAIAAAAAEAAiAQ=</HashCode>
+      <FileName>Assets\_Scripts\ManagerScripts\BusManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_Scripts.CollectibleController.StackManager">
+    <Position X="11.75" Y="7.75" Width="2.25" />
+    <NestedTypes>
+      <Class Name="_Scripts.CollectibleController.StackManager.StackDataHolder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\_Scripts\ManagerScripts\StackManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAiAAACAACAAAAAEAAAAIAAAAAgAAgAAACBAAACABAA=</HashCode>
+      <FileName>Assets\_Scripts\ManagerScripts\StackManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AnimalType">
+    <Position X="16.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAABAAAAAABAAAQAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\_Scripts\Enums\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

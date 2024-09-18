@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1006f941ad8244990154e6b7f5ef6e, type: 3}
+  m_Name: TestType
+  m_EditorClassIdentifier: 
+  <BaseCatModel>k__BackingField: {fileID: 6041308849616185153, guid: 3f65d3be8da33e3418505ead5a0a406c,
+    type: 3}
+  CatAndTypes:
+  - <CatMaterial>k__BackingField: {fileID: 0}
+    <CatType>k__BackingField: 0
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: ea048d23a9958294e872a46be49686a7,
+      type: 2}
+    <CatType>k__BackingField: 2
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: 027a4c32c7b80854193a0bc5a54b1da6,
+      type: 2}
+    <CatType>k__BackingField: 6
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: ea048d23a9958294e872a46be49686a7,
+      type: 2}
+    <CatType>k__BackingField: 3
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: 4f3a107440f7ee643932127296da477e,
+      type: 2}
+    <CatType>k__BackingField: 4
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: 6da7ab1a82bce76449eca3f5bb510a9a,
+      type: 2}
+    <CatType>k__BackingField: 5
+  - <CatMaterial>k__BackingField: {fileID: 2100000, guid: 5c7948f50d6d7e84cb11ddb92ea9f141,
+      type: 2}
+    <CatType>k__BackingField: 1
